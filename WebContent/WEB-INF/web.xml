@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>PIS</display-name>
+  <session-config>
+        <session-timeout>60</session-timeout>
+  </session-config>
+  
+  <welcome-file-list>
+    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <filter>
+    <filter-name>AdminFilter</filter-name>
+    <filter-class>org.pis.backend.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+    <url-pattern>/faces/admin/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+  
+  <filter>
+    <filter-name>SecuredFilter</filter-name>
+    <filter-class>org.pis.backend.SecuredFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SecuredFilter</filter-name>
+    <url-pattern>/member/*</url-pattern>
+    <url-pattern>/faces/member/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+  
+  
+  <filter>
+    <filter-name>LoginPageFilter</filter-name>
+    <filter-class>org.pis.backend.LoginPageFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginPageFilter</filter-name>
+    <url-pattern>/login.xhtml</url-pattern>
+    <url-pattern>/error/error_nologin.xhtml</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>/faces/*</url-pattern>
+  </servlet-mapping>
+
+</web-app>
